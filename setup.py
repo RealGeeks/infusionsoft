@@ -9,7 +9,6 @@ setup(
     name="infusionsoft",
     version=infusionsoft.__version__,
     description="A client library for the InfusionSoft API",
-    long_description=long_description,
     url='https://github.com/realgeeks/infusionsoft',
     author='Kevin McCarthy',
     author_email='me@kevinmccarthy.org',
