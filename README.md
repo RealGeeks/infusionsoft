@@ -11,7 +11,7 @@ This client only does the things that I needed to do with Infusionsoft, so it's 
 
 # Installation
 
-pip install infusionosft
+`pip install infusionosft`
 
 # Usage
 
