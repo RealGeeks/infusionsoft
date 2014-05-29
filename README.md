@@ -80,7 +80,7 @@ Add a note to a given contact id with a given title and body string
 ifs.add_note(contact_id, note_title, note_body)
 ```
 
-## Set Onwer
+## Set Owner
 
 Assign the given contact ID to the given owner ID
 
