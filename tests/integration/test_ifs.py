@@ -5,7 +5,11 @@ import pytest
 
 @pytest.fixture
 def randstring():
-    return binascii.b2a_hex(os.urandom(15))
+    """
+    return a random 15 character uppercase string.  uppercase since IFS likes
+    to uppercase names automatically, which screws up some assertions.
+    """
+    return binascii.b2a_hex(os.urandom(15)).upper()
 
 @pytest.fixture
 def ifs():
@@ -15,8 +19,15 @@ def ifs():
     )
 
 @pytest.fixture
-def contact(ifs, randstring):
+def contact(request, ifs, randstring):
+    """
+    creates a temporary contact, deletes it when test is done.
+    """
     test_data = {'FirstName': randstring, 'LastName': randstring, 'Email': 'testguy' + randstring + '@example.com'}
+    contact_id = ifs.add(test_data)
+    def fin():
+        ifs.remove(contact_id)
+    request.addfinalizer(fin)
     return ifs.add(test_data)
 
 def test_add_and_get(ifs, randstring):
@@ -42,3 +53,12 @@ def test_add_note(ifs, contact):
 def test_set_owner(ifs, contact):
     owner_id = ifs.get_list_of_owners()[0]['Id']
     ifs.set_owner(contact, owner_id)
+
+def test_get_and_create_opportunities(ifs, contact):
+    ifs.create_opportunity(contact, 'test opportunity', 0)
+    assert len(ifs.get_opportunities(contact))
+
+def test_move_opportunity_stage(ifs, contact):
+    ifs.create_opportunity(contact, 'test opportunity', 0)
+    ifs.move_opportunity_stage(contact, 3)
+    assert ifs.get_opportunities(contact)[0]['StageID'] == 3

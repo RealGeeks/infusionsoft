@@ -96,6 +96,27 @@ Place an order for a list of products, given a contact ID.
 ifs.place_order(contact_id, [product1, product2, product3]
 ```
 
+## Create Opportunity
+
+```python
+ifs.create_opportunity(contact_id, title, stage)
+```
+
+## Get Opportunities for Contact
+
+```python
+ifs.get_opportunities(contact_id, fields)
+```
+`fields` is an optional sequence containing a list of fields you want from the [Lead table](http://help.infusionsoft.com/developers/tables/lead).  Apparently opportunities are called *Leads* in the api.  Don't ask me why.
+
+## Move Opportunity Stage
+
+```python
+ifs.move_opportunity_stage(ifs, contact, stage)
+```
+
+Moves all opportunities on a given contact to the stage ID passed in.  Does nothing if the given contact has no opportunities.
+
 # Running tests
 
 If you want to run the integration tests, you'll need an infusionsoft account and API key.  Set the `IFS_API_KEY` and `IFS_NAME` environment variables and run the tests with py.test.  Example:

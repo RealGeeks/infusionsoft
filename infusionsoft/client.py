@@ -46,9 +46,13 @@ class Infusionsoft(object):
 
 
     def add(self, data):
-        uid =  self.client.ContactService.add(self.key, data)
+        contact_id = self.client.ContactService.add(self.key, data)
         self.client.APIEmailService.optIn(self.key, data['Email'], "You signed up on our website")
-        return uid
+        return contact_id
+
+
+    def remove(self, contact_id):
+        self.client.DataService.delete(self.key, 'Contact', contact_id)
 
 
     def get_list_of_owners(self):
@@ -93,3 +97,19 @@ class Infusionsoft(object):
             False,         #bool
             []             #list
         )
+
+    def get_opportunities(self, contact_id, fields=('Id','OpportunityTitle','StageID','UserID')):
+        return self.client.DataService.query(self.key, 'Lead', 1000, 0, {'ContactId': contact_id}, fields)
+
+    def create_opportunity(self, contact_id, title, stage):
+        values = {
+            'OpportunityTitle': title,
+            'ContactID': contact_id,
+        }
+        self.client.DataService.add( self.key, 'Lead', values)
+
+
+    def move_opportunity_stage(self, contact_id, stage):
+        opportunities = self.get_opportunities(contact_id)
+        for opp in opportunities:
+            self.client.DataService.update(self.key, 'Lead', opp['Id'], {'StageID': stage})
