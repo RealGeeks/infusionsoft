@@ -127,6 +127,11 @@ IFS_NAME='ab123' IFS_API_KEY=asdfasdfasdfasdfasdfasdfasdfasdf py.test
 
 The unit tests can be run without an IFS account.
 
+# Changelog
+  * 0.1.1 - Fix bug with setup.py
+  * 0.1.0 - Add opportunity features
+  * 0.0.1 - Initial release
+
 
 # License
 

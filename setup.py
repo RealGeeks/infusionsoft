@@ -1,13 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-import infusionsoft
-
 here = os.path.abspath(os.path.dirname(__file__))
 
 setup(
     name="infusionsoft",
-    version=infusionsoft.__version__,
+    version='0.1.1',
     description="A client library for the InfusionSoft API",
     url='https://github.com/realgeeks/infusionsoft',
     author='Kevin McCarthy',
