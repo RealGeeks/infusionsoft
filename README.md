@@ -88,6 +88,14 @@ Assign the given contact ID to the given owner ID
 ifs.set_owner(contact_id, owner_id)
 ```
 
+## Get Owner
+
+Get the owner ID for a given contact ID
+
+```python
+ifs.get_owner(contact_id)
+```
+
 ## Place Order
 
 Place an order for a list of products, given a contact ID.
@@ -128,6 +136,7 @@ IFS_NAME='ab123' IFS_API_KEY=asdfasdfasdfasdfasdfasdfasdfasdf py.test
 The unit tests can be run without an IFS account.
 
 # Changelog
+  * 0.2.0 - Add `get_owner` function
   * 0.1.1 - Fix bug with setup.py
   * 0.1.0 - Add opportunity features
   * 0.0.1 - Initial release

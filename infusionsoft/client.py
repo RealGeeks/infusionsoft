@@ -86,6 +86,11 @@ class Infusionsoft(object):
         self.client.ContactService.update(self.key, contact_id, {'OwnerID': owner_id})
 
 
+    def get_owner(self, contact_id):
+        record = self.client.ContactService.load(self.key, contact_id, ['OwnerID'])
+        return record.get('OwnerID')
+
+
     def place_order(self, contact_id, product_ids):
         self.client.OrderService.placeOrder(
             self.key,      #str

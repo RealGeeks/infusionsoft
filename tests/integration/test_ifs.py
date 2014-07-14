@@ -50,9 +50,10 @@ def test_add_note(ifs, contact):
     uid = contact
     ifs.apply_tag(uid, 1)
 
-def test_set_owner(ifs, contact):
+def test_set_and_get_owner(ifs, contact):
     owner_id = ifs.get_list_of_owners()[0]['Id']
     ifs.set_owner(contact, owner_id)
+    assert ifs.get_owner(contact) == owner_id
 
 def test_get_and_create_opportunities(ifs, contact):
     ifs.create_opportunity(contact, 'test opportunity', 0)

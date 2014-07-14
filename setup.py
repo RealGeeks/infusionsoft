@@ -5,7 +5,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 setup(
     name="infusionsoft",
-    version='0.1.1',
+    version='0.2.0',
     description="A client library for the InfusionSoft API",
     url='https://github.com/realgeeks/infusionsoft',
     author='Kevin McCarthy',
